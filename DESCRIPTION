@@ -1,0 +1,13 @@
+Package: amrElm
+Type: Package
+Title: Affinity Matrix Regularized Extreme Learning Machine
+Version: 0.1
+Date: 2015-01-15
+Author: Leonardo Jose Silvestre <leonardo.silvestre@ufes.br>
+Maintainer: Leonardo Jose Silvestre <leonardo.silvestre@ufes.br>
+Description: Training and test (predict) functions for Affinity Matrix Regularized Extreme Learning 
+    Machine as  described in paper ...
+Depends: R(>= 3.0.1)
+Imports: corpcor, e1071
+License: MIT
+Packaged: 2015-03-17 17:45:15 UTC; leo
