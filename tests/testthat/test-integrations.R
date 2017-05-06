@@ -32,6 +32,8 @@ test_that("Newer and older versions produce the same predictions for amrElmSSL."
 
   data(heart)
 
+  set.seed(2713)
+
   data <- heart$data
   labels <- heart$labels
 
