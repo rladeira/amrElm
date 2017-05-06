@@ -1,9 +1,11 @@
 Package: amrElm
 Type: Package
 Title: Affinity Matrix Regularized Extreme Learning Machine
-Version: 0.0.0.9000
-Author: Leonardo Jose Silvestre <leonardo.silvestre@ufes.br>
-Maintainer: Leonardo Jose Silvestre <leonardo.silvestre@ufes.br>
+Version: 1.0
+Authors@R: as.person(c(
+    "Leonardo Silvestre <leonardo.silvestre@ufes.br> [aut]", 
+    "Rafael Ladeira <rwladeira@gmail.com> [cre]"
+  ))
 Description: Training and test (predict) functions for Affinity Matrix
     Regularized Extreme Learning Machine as described in paper ...
 Depends:
@@ -11,7 +13,7 @@ Depends:
 Imports:
     corpcor,
     e1071
+Suggests: caTools
 License: MIT
 LazyData: true
 RoxygenNote: 5.0.1
-Suggests: caTools
