@@ -11,7 +11,7 @@ amrElmSSLTrain(l, nl, XTrain, YTrain, affinity = "cosine")
 
 \item{nl}{the number of labeled patterns}
 
-\item{XTrain}{training data, numerical with zero mean and unit variance and patterns in the lines, attributes in the columns 
+\item{XTrain}{training data, numerical with zero mean and unit variance and patterns in the lines, attributes in the columns
 - the unlabeled patterns must came after the labeled ones}
 
 \item{YTrain}{training data labels (only two classes, with labels equals to -1 or +1, and 0 for the unlabeled patterns)}
@@ -19,10 +19,10 @@ amrElmSSLTrain(l, nl, XTrain, YTrain, affinity = "cosine")
 \item{affinity}{- only cosine implemented}
 }
 \value{
-The amrElm model for semissupervised problems - a list with: 
-         Z: hidden layer weights 
+The amrElm model for semissupervised problems - a list with:
+         Z: hidden layer weights
          H: hidden layer output
-         W: output layer weights 
+         W: output layer weights
          affinity: the affinity used to generate the model (e.g.: cosine affinity)
          dataTrain: training data for generating affinity matrix.
 }
@@ -30,24 +30,37 @@ The amrElm model for semissupervised problems - a list with:
 Creates a model for AMR-ELM.
 }
 \examples{
+
+\dontrun{
+library(amrElm)
+
 data(heart)
+
 data <- heart$data
 labels <- heart$labels
+
 l <- 500
 nl <- 50
+
 N <- nrow(data)
 randomPatterns <- seq(N)
+
 data <- data[randomPatterns,]
 labels <- labels[randomPatterns]
+
 nTrain <- floor(2*N/3)
 nTest <- N - nTrain
+
 data <- data[randomPatterns,]
 labels <- labels[randomPatterns]
+
 XTrain <- data[1:nTrain,]
 XTest <- data[(nTrain+1):N,]
+
 YTrain <- labels[1:nTrain]
-YTrain[(nl+1):nTrain] <- 0
+YTest[(nl+1):nTrain] <- 0
+
 model <- amrElmSSLTrain(l,nl,XTrain,YTrain)
 testOutput <- amrElmTest(XTest, model)
 }
-
+}

@@ -15,28 +15,42 @@ amrElmSSL <- function(x, ...) UseMethod("amrElmSSL")
 #'          weights: output layer weights
 #'          affinity: the affinity used to generate the model (e.g.: cosine affinity)
 #'          X: training data for generating affinity matrix.
-#' @export
 #' @examples
+#'
+#' \dontrun{
+#' library(amrElm)
+#'
 #' data(heart)
+#'
 #' data <- heart$data
 #' labels <- heart$labels
+#'
 #' hidden_neurons <- 500
 #' nl <- 50
+#'
 #' N <- nrow(data)
 #' randomPatterns <- seq(N)
+#'
 #' data <- data[randomPatterns,]
 #' labels <- labels[randomPatterns]
+#'
 #' n <- floor(2*N/3)
 #' nTest <- N - n
+#'
 #' data <- data[randomPatterns,]
 #' labels <- labels[randomPatterns]
+#'
 #' X <- data[1:n,]
 #' XTest <- data[(n+1):N,]
+#'
 #' y <- labels[1:n]
 #' y[(nl+1):n] <- 0
+#'
 #' model <- amrElmSSLTrain(hidden_neurons,nl,X,y)
 #' testOutput <- amrElmTest(XTest, model)
+#' }
 #'
+#' @export
 
 amrElmSSL.default <- function(X, y, hidden_neurons, nl,
                               affinity="cosine") {
@@ -44,7 +58,7 @@ amrElmSSL.default <- function(X, y, hidden_neurons, nl,
   p <- ncol(X)
 
   # Get random Z matrix (hidden layer weight matrix)
-  Z <- replicate(hidden_neurons, runif(p + 1, -0.5, 0.5))
+  Z <- replicate(hidden_neurons, stats::runif(p + 1, -0.5, 0.5))
 
   # Add bias to the X matrix
   X_aug <- as.matrix(cbind(replicate(n, 1), X))

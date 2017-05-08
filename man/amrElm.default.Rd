@@ -2,9 +2,9 @@
 % Please edit documentation in R/amrElm.R
 \name{amrElm.default}
 \alias{amrElm.default}
-\title{Creates a model for AMR-ELM.}
+\title{AMR-ELM.}
 \usage{
-\method{amrElm}{default}(X, y, hidden_neurons, affinity = "cosine")
+\method{amrElm}{default}(X, y, hidden_neurons, affinity = c("cosine", "none"))
 }
 \arguments{
 \item{X}{training data, numerical with zero mean and unit variance and patterns in the lines, attributes in the columns}
@@ -27,23 +27,24 @@ the amrElm model for supervised problems, with:
 Creates a model for AMR-ELM.
 }
 \examples{
+
+\dontrun{
+library(amrElm)
+
 data(heart)
+
 data <- heart$data
 labels <- heart$labels
-hidden_neurons <- 500
-N <- nrow(data)
-randomPatterns <- seq(N)
-data <- data[randomPatterns,]
-labels <- labels[randomPatterns]
-n <- floor(2*N/3)
-n_test <- N - n
-data <- data[randomPatterns,]
-labels <- labels[randomPatterns]
-X <- data[1:n,]
-newdata <- data[(n+1):N,]
-y <- labels[1:n]
-model <- amrElmTrain(hidden_neurons,X,y)
-testOutput <- amrElmTest(newdata, model)
+n <- nrow(data)
 
+split <- caTools::sample.split(labels, SplitRatio = 0.7)
+train_data <- data[split == TRUE, ]
+test_data <- data[split == FALSE, ]
+
+train_labels <- labels[split == TRUE]
+test_labels <- labels[split == FALSE]
+
+model <- amrElm(train_data, train_labels, hidden_neurons = 500)
+predicted_labels <- predict(model, test_data)
 }
-
+}

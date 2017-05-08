@@ -14,27 +14,41 @@
 #'          W: output layer weights
 #'          affinity: the affinity used to generate the model (e.g.: cosine affinity)
 #'          dataTrain: training data for generating affinity matrix.
-#' @export
 #' @examples
+#'
+#' \dontrun{
+#' library(amrElm)
+#'
 #' data(heart)
+#'
 #' data <- heart$data
 #' labels <- heart$labels
+#'
 #' l <- 500
 #' nl <- 50
+#'
 #' N <- nrow(data)
 #' randomPatterns <- seq(N)
+#'
 #' data <- data[randomPatterns,]
 #' labels <- labels[randomPatterns]
+#'
 #' nTrain <- floor(2*N/3)
 #' nTest <- N - nTrain
+#'
 #' data <- data[randomPatterns,]
 #' labels <- labels[randomPatterns]
+#'
 #' XTrain <- data[1:nTrain,]
 #' XTest <- data[(nTrain+1):N,]
+#'
 #' YTrain <- labels[1:nTrain]
-#' YTrain[(nl+1):nTrain] <- 0
+#' YTest[(nl+1):nTrain] <- 0
+#'
 #' model <- amrElmSSLTrain(l,nl,XTrain,YTrain)
 #' testOutput <- amrElmTest(XTest, model)
+#' }
+#' @export
 amrElmSSLTrain <- function(l, nl, XTrain, YTrain, affinity='cosine') {
 
   NL <- nl
@@ -43,7 +57,7 @@ amrElmSSLTrain <- function(l, nl, XTrain, YTrain, affinity='cosine') {
   nTrain <- dim(XTrain)[1]
 
   # Get random Z matrix (hidden layer weight matrix)
-  Z <- replicate(l, runif(nAttrib+1,-0.5,0.5))
+  Z <- replicate(l, stats::runif(nAttrib+1,-0.5,0.5))
 
   # Add bias to the XTrain matrix
   Xaug <- as.matrix(cbind(replicate(nTrain,1),XTrain))

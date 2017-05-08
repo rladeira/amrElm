@@ -21,6 +21,9 @@ amrElm <- function(x, ...) UseMethod("amrElm")
 #'
 #' @examples
 #'
+#' \dontrun{
+#' library(amrElm)
+#'
 #' data(heart)
 #'
 #' data <- heart$data
@@ -36,7 +39,7 @@ amrElm <- function(x, ...) UseMethod("amrElm")
 #'
 #' model <- amrElm(train_data, train_labels, hidden_neurons = 500)
 #' predicted_labels <- predict(model, test_data)
-#'
+#' }
 #' @export
 
 amrElm.default <- function(X, y, hidden_neurons,
@@ -47,7 +50,7 @@ amrElm.default <- function(X, y, hidden_neurons,
   p <- ncol(X)
 
   # Get random Z matrix (hidden layer weight matrix)
-  Z <- replicate(hidden_neurons, runif(p + 1, -0.5, 0.5))
+  Z <- replicate(hidden_neurons, stats::runif(p + 1, -0.5, 0.5))
 
   # Add bias to the X matrix
   X_aug <- as.matrix(cbind(replicate(n, 1), X))
@@ -97,8 +100,12 @@ amrElm.default <- function(X, y, hidden_neurons,
 #'          replacing it by the affinity matrix computed for the training patterns
 #' @return outupt for the test patterns
 #' @export
-#' @examples \dontrun{testOutput <- amrElmTest(newdata, model)}
+#' @examples \dontrun{testOutput <- predict(model, newdata)}
 
+#'
+#' @rdname amrElm
+#' @method predict amrElm
+#' @export
 predict.amrElm <- function(model, newdata) {
 
   Z <- model$Z

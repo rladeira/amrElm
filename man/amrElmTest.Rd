@@ -7,16 +7,16 @@
 amrElmTest(XTest, model)
 }
 \arguments{
-\item{XTest}{the test data, numerical - numerical with zero mean and unit 
+\item{XTest}{the test data, numerical - numerical with zero mean and unit
 variance and patterns in the lines, attributes in the columns}
 
 \item{model}{the model created by amrElm-train, which contains:
-Z: hidden layer weights 
+Z: hidden layer weights
 H: hidden layer output
-W: output layer weights 
+W: output layer weights
 affinity: the affinity used to generate the model (e.g.: cosine affinity)
-dataTrain: training data for generating affinity matrix. TODO: try to remove XTrain from 
-the parameter list, 
+dataTrain: training data for generating affinity matrix. TODO: try to remove XTrain from
+the parameter list,
 replacing it by the affinity matrix computed for the training patterns}
 }
 \value{
@@ -27,5 +27,5 @@ Tests the AMR-ELM model.
 }
 \examples{
 \dontrun{testOutput <- amrElmTest(XTest, model)}
-}
 
+}

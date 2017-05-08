@@ -17,9 +17,9 @@ amrElmTrain(l, XTrain, YTrain, affinity = "cosine")
 }
 \value{
 the amrElm model for supervised problems, with:
-         Z: hidden layer weights 
+         Z: hidden layer weights
          H: hidden layer output
-         W: output layer weights 
+         W: output layer weights
          affinity: the affinity used to generate the model (e.g.: cosine affinity)
          dataTrain: training data for generating affinity matrix.
 }
@@ -27,22 +27,36 @@ the amrElm model for supervised problems, with:
 Creates a model for AMR-ELM.
 }
 \examples{
+
+\dontrun{
+library(amrElm)
+
 data(heart)
+
 data <- heart$data
 labels <- heart$labels
+
 l <- 500
 N <- nrow(data)
+
 randomPatterns <- seq(N)
 data <- data[randomPatterns,]
 labels <- labels[randomPatterns]
+
 nTrain <- floor(2*N/3)
 nTest <- N - nTrain
+
 data <- data[randomPatterns,]
 labels <- labels[randomPatterns]
+
 XTrain <- data[1:nTrain,]
 XTest <- data[(nTrain+1):N,]
+
 YTrain <- labels[1:nTrain]
+
 model <- amrElmTrain(l,XTrain,YTrain)
+
 testOutput <- amrElmTest(XTest, model)
 }
 
+}

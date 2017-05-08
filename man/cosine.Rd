@@ -15,4 +15,3 @@ Cosine similarity matrix
 \description{
 Cosine similarity implementation from http://brainchronicle.blogspot.com.br/2012/06/rcpp-vs-r-implementation-of-cosine.html
 }
-

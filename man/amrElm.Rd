@@ -2,7 +2,7 @@
 % Please edit documentation in R/amrElm.R
 \name{predict.amrElm}
 \alias{predict.amrElm}
-\title{Tests the AMR-ELM model.}
+\title{AMR-ELM.}
 \usage{
 \method{predict}{amrElm}(model, newdata)
 }
@@ -26,6 +26,6 @@ outupt for the test patterns
 Tests the AMR-ELM model.
 }
 \examples{
-\dontrun{testOutput <- amrElmTest(newdata, model)}
-}
+\dontrun{testOutput <- predict(model, newdata)}
 
+}

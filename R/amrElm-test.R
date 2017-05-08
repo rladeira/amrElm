@@ -11,8 +11,10 @@
 #'          the parameter list,
 #'          replacing it by the affinity matrix computed for the training patterns
 #' @return outupt for the test patterns
-#' @export
+#'
 #' @examples \dontrun{testOutput <- amrElmTest(XTest, model)}
+#'
+#' @export
 amrElmTest <- function(XTest, model) {
 
   Z <- model$Z
